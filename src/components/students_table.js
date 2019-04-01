@@ -1,5 +1,6 @@
 
 import React, {Component} from 'react';
+import StudentRow from './student_row';
 
 class StudentsTable extends Component {
 
@@ -7,13 +8,7 @@ class StudentsTable extends Component {
         const {col = 's12', list} = this.props;
         
         const studentElements = list.map( (student) => {
-            return (
-                <tr key={student.id}>
-                    <td>{student.name}</td>
-                    <td>{student.course}</td>
-                    <td>{student.grade}</td>
-                </tr>
-            );
+            return <StudentRow key={student.id} {...student} delete={this.props.delete}/>
         });
 
         return (
@@ -24,6 +19,7 @@ class StudentsTable extends Component {
                             <th>Name</th>
                             <th>Course</th>
                             <th>Grade</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
